@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SelectCityDemo.Pages.Users;
 
-public class CreateModel : PageModel
+public class CreateVueModel : PageModel
 {
     public Input Input { get; set; }
-
     public void OnGet()
     {
     }

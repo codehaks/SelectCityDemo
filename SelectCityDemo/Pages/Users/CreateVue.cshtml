@@ -1,0 +1,90 @@
+﻿@page
+@model SelectCityDemo.Pages.Users.CreateVueModel
+@{
+}
+
+
+<h2>پروفایل جدید</h2>
+<hr />
+<div id="app">
+    <form asp-action="Create">
+
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="@Model.Input.Name" class="control-label"></label>
+            <input asp-for="@Model.Input.Name" class="form-control" />
+            <span asp-validation-for="@Model.Input.Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+
+
+            <select asp-for="@Model.Input.ProvinceId" v-model="selectedProvince" class="form-control" v-on:click="onProvinceChange">
+                <option value=null>انتخاب کنید</option>
+                <option v-for="item in provinces" v-bind:value="item.id">
+                    {{item.name}}
+                </option>
+            </select>
+
+        </div>
+        <div class ="mb-3">
+
+            <select asp-for="@Model.Input.CityId" v-model="selectedCity" class="form-control" v-bind:disabled="selectedProvince===null">
+                <option value=null>انتخاب کنید</option>
+                <option v-for="item in selectedProvinceCities" v-bind:value="item.id">
+                    {{item.name}}
+                </option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <input type="submit" value="ثبت" class="btn btn-default w-25" />
+        </div>
+    </form>
+</div>
+
+@section scripts{
+
+    <script src="~/lib/vue/vue.js"></script>
+  
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                provinces: [],
+                cities: [],
+                selectedProvinceCities: [],
+                selectedProvince: null,
+                selectedCity: null
+            },
+            created: function () {
+                this.getData();
+            },
+            methods: {
+                onProvinceChange: function () {
+                    this.selectedProvinceCities = [];
+                    for (var i = 0; i < this.cities.length; i++) {
+                        if (this.cities[i].provinceID == this.selectedProvince) {
+                            this.selectedProvinceCities.push(this.cities[i]);
+                        }
+
+                    }
+                },
+                getData: function () {
+                    var vm = this;
+                    $.ajax({ url: "/api/provinces.json", method: "GET" })
+                        .done(function (data) {
+                            vm.provinces = data;
+                        });
+                    $.ajax({ url: "/api/cities.json", method: "GET" })
+                        .done(function (data) {
+                            vm.cities = data;
+                        });
+                }
+            }
+        })
+    </script>
+}
