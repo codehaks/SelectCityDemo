@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33103.201
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectCityDemo", "SelectCityDemo\SelectCityDemo.csproj", "{F66A58A7-D92E-4A07-A700-D3F1CB99A369}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codehaks.IranData", "Codehaks.IranData\Codehaks.IranData.csproj", "{9CE29B41-53CF-4290-91ED-925AE72C965B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F66A58A7-D92E-4A07-A700-D3F1CB99A369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F66A58A7-D92E-4A07-A700-D3F1CB99A369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F66A58A7-D92E-4A07-A700-D3F1CB99A369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F66A58A7-D92E-4A07-A700-D3F1CB99A369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE29B41-53CF-4290-91ED-925AE72C965B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE29B41-53CF-4290-91ED-925AE72C965B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE29B41-53CF-4290-91ED-925AE72C965B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE29B41-53CF-4290-91ED-925AE72C965B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {309CD3AA-66D9-4C51-93BD-729E904C858A}
+	EndGlobalSection
+EndGlobal

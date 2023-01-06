@@ -1,0 +1,80 @@
+﻿@page
+@model SelectCityDemo.Pages.Users.CreateModel
+@{
+}
+
+
+<h2>پروفایل جدید</h2>
+<hr />
+<div id="app">
+    <form asp-page="/profile/create">
+
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="@Model.Input.Name" class="control-label"></label>
+            <input asp-for="@Model.Input.Name" class="form-control" />
+            <span asp-validation-for="@Model.Input.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+
+            <select asp-for="@Model.Input.ProvinceId" id="province" class="form-control"></select>
+
+        </div>
+        <div class="mb-3">
+
+            <select asp-for="@Model.Input.CityId" id="city" class="form-control"></select>
+        </div>
+
+
+        <div class="mb-3">
+            <input type="submit" value="ثبت" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section scripts{
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var $provinceDropdown = $("#province");
+            var $cityDropdown = $("#city");
+            $provinceDropdown.append('<option > انتخاب کنید </option>');
+            $cityDropdown.append('<option disabled > ابتدا استان انتخاب کنید </option>');
+
+            var onProvinceChange = function (provinceId) {
+                $cityDropdown.children().remove().end();
+                for (var i = 0; i < cities.length; i++) {
+                    if (cities[i].provinceID == provinceId) {
+                        $cityDropdown.append('<option value="' + cities[i].id + '">' + cities[i].name + '</option>');
+                    }
+                }
+
+            }
+
+            $provinceDropdown.on("change", function () {
+                onProvinceChange($provinceDropdown.find(":selected").val());
+            });
+
+            var getData = function () {
+
+                $.ajax({ url: "/api/provinces.json", method: "GET" })
+                    .done(function (data) {
+
+
+                        $.each(data, function () {
+                            $provinceDropdown.append('<option value="' + this.id + '">' + this.name + '</option>');
+                        });
+
+                    });
+                $.ajax({ url: "/api/cities.json", method: "GET" })
+                    .done(function (data) {
+                        cities = data;
+                    });
+            }
+            getData();
+        });
+    </script>
+}
